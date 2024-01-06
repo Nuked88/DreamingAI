@@ -1,0 +1,557 @@
+{
+  "last_node_id": 64,
+  "last_link_id": 136,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        -1053,
+        -648
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            131
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            12
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            21
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "meinamix_meinaV11.safetensors"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "ADE_AnimateDiffLoaderWithContext",
+      "pos": [
+        -243,
+        -639
+      ],
+      "size": {
+        "0": 324,
+        "1": 225
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 131
+        },
+        {
+          "name": "context_options",
+          "type": "CONTEXT_OPTIONS",
+          "link": 22
+        },
+        {
+          "name": "motion_lora",
+          "type": "MOTION_LORA",
+          "link": null
+        },
+        {
+          "name": "motion_model_settings",
+          "type": "MOTION_MODEL_SETTINGS",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            42
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ADE_AnimateDiffLoaderWithContext"
+      },
+      "widgets_values": [
+        "mm_sd_v15_v2.ckpt",
+        "sqrt_linear (AnimateDiff)",
+        1,
+        true
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 15,
+      "type": "ADE_AnimateDiffUniformContextOptions",
+      "pos": [
+        -1053,
+        -423
+      ],
+      "size": {
+        "0": 315,
+        "1": 154
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTEXT_OPTIONS",
+          "type": "CONTEXT_OPTIONS",
+          "links": [
+            22
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ADE_AnimateDiffUniformContextOptions"
+      },
+      "widgets_values": [
+        16,
+        1,
+        4,
+        "uniform",
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 12,
+      "type": "CLIPSetLastLayer",
+      "pos": [
+        -702,
+        -1251
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 12
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            134
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPSetLastLayer"
+      },
+      "widgets_values": [
+        -2
+      ]
+    },
+    {
+      "id": 3,
+      "type": "KSampler",
+      "pos": [
+        855,
+        -1107
+      ],
+      "size": {
+        "0": 315,
+        "1": 262
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 42
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 105
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 136
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 135
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        719446737918988,
+        "fixed",
+        23,
+        7,
+        "dpmpp_2m_sde",
+        "ddim_uniform",
+        1
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1233,
+        -1107
+      ],
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 7
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 21,
+          "slot_index": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            56
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 31,
+      "type": "SaveVideo",
+      "pos": [
+        1575,
+        -1260
+      ],
+      "size": {
+        "0": 666,
+        "1": 945
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 56
+        },
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "link": 55,
+          "widget": {
+            "name": "METADATA"
+          }
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "",
+        true,
+        false,
+        2,
+        null
+      ]
+    },
+    {
+      "id": 50,
+      "type": "EmptyLatentImage",
+      "pos": [
+        171,
+        -504
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            135
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        728,
+        600
+      ]
+    },
+    {
+      "id": 32,
+      "type": "SetMetadataForSaveVideo",
+      "pos": [
+        1080,
+        -747
+      ],
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "links": [
+            55
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SetMetadataForSaveVideo"
+      },
+      "widgets_values": [
+        600,
+        8,
+        "manual"
+      ]
+    },
+    {
+      "id": 58,
+      "type": "BatchPromptSchedule",
+      "pos": [
+        -315,
+        -1413
+      ],
+      "size": {
+        "0": 783,
+        "1": 612
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 134
+        }
+      ],
+      "outputs": [
+        {
+          "name": "POS",
+          "type": "CONDITIONING",
+          "links": [
+            105
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "NEG",
+          "type": "CONDITIONING",
+          "links": [
+            136
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BatchPromptSchedule"
+      },
+      "widgets_values": [
+        "\"4\":\"snow (falling: `pw_a`) at velocity 1\",\n\"6\":\"snow falling at velocity 2\",\n\"7\":\"snow falling at velocity 3\",\n\"15\":\"snow falling at velocity 1\",\n\"20\":\"snow falling at velocity 2\",\n\"21\":\"snow falling at velocity 3\",\n\"22\":\"snow falling at velocity 4\",\n\"23\":\"snow falling at velocity 5\",\n\"27\":\"snow falling at velocity 6\",\n\"30\":\"snow falling at velocity 7\",\n\"48\":\"snow falling at velocity 8\",\n\"49\":\"snow falling at velocity 9\",\n\"57\":\"snow falling at velocity 1\",\n\"58\":\"snow falling at velocity 2\",\n\"59\":\"snow falling at velocity 3\",\n\"63\":\"snow falling at velocity 4\",\n\"67\":\"snow falling at velocity 5\",\n\"72\":\"snow falling at velocity 6\",\n\"73\":\"snow falling at velocity 7\",\n\"74\":\"snow falling at velocity 8\",\n\"78\":\"snow falling at velocity 9\",\n\"79\":\"snow falling at velocity 1\",\n\"80\":\"snow falling at velocity 2\",\n\"81\":\"snow falling at velocity 3\",\n\"95\":\"snow falling at velocity 4\",\n\"96\":\"snow falling at velocity 5\",\n\"100\":\"snow falling at velocity 6\",\n\"101\":\"snow falling at velocity 7\",\n\"102\":\"snow falling at velocity 8\",\n\"108\":\"snow falling at velocity 9\",\n\"109\":\"snow falling at velocity 1\",\n\"110\":\"snow falling at velocity 2\",\n\"112\":\"snow falling at velocity 3\",\n\"113\":\"snow falling at velocity 4\",\n\"138\":\"snow falling at velocity 5\",\n\"143\":\"snow falling at velocity 6\",\n\"144\":\"snow falling at velocity 7\",\n\"150\":\"snow falling at velocity 8\",\n\"151\":\"snow falling at velocity 9\",\n\"157\":\"snow falling at velocity 1\",\n\"158\":\"snow falling at velocity 2\",\n\"164\":\"snow falling at velocity 3\",\n\"166\":\"snow falling at velocity 4\",\n\"167\":\"snow falling at velocity 5\",\n\"168\":\"snow falling at velocity 6\",\n\"182\":\"snow falling at velocity 7\",\n\"184\":\"snow falling at velocity 8\",\n\"185\":\"snow falling at velocity 9\",\n\"187\":\"snow falling at velocity 1\",\n\"193\":\"snow falling at velocity 2\",\n\"194\":\"snow falling at velocity 3\",\n\"202\":\"snow falling at velocity 4\",\n\"203\":\"snow falling at velocity 5\",\n\"216\":\"snow falling at velocity 6\",\n\"217\":\"snow falling at velocity 7\",\n\"223\":\"snow falling at velocity 8\",\n\"224\":\"snow falling at velocity 9\",\n\"231\":\"snow falling at velocity 1\",\n\"232\":\"snow falling at velocity 2\",\n\"235\":\"snow falling at velocity 3\",\n\"236\":\"snow falling at velocity 4\",\n\"252\":\"snow falling at velocity 5\",\n\"256\":\"snow falling at velocity 6\",\n\"258\":\"snow falling at velocity 7\",\n\"263\":\"snow falling at velocity 8\",\n\"265\":\"snow falling at velocity 9\",\n\"266\":\"snow falling at velocity 1\",\n\"267\":\"snow falling at velocity 2\",\n\"268\":\"snow falling at velocity 3\",\n\"269\":\"snow falling at velocity 4\",\n\"272\":\"snow falling at velocity 5\",\n\"278\":\"snow falling at velocity 6\",\n\"287\":\"snow falling at velocity 7\",\n\"310\":\"snow falling at velocity 8\",\n\"325\":\"snow falling at velocity 9\",\n\"328\":\"snow falling at velocity 1\",\n\"330\":\"snow falling at velocity 2\",\n\"338\":\"snow falling at velocity 3\",\n\"365\":\"snow falling at velocity 4\",\n\"369\":\"snow falling at velocity 5\",\n\"370\":\"snow falling at velocity 6\",\n\"371\":\"snow falling at velocity 7\",\n\"373\":\"snow falling at velocity 8\",\n\"374\":\"snow falling at velocity 9\",\n\"380\":\"snow falling at velocity 1\",\n\"382\":\"snow falling at velocity 2\",\n\"384\":\"snow falling at velocity 3\",\n\"401\":\"snow falling at velocity 4\",\n\"409\":\"snow falling at velocity 5\",\n\"411\":\"snow falling at velocity 6\",\n\"415\":\"snow falling at velocity 7\",\n\"421\":\"snow falling at velocity 8\",\n\"432\":\"snow falling at velocity 9\",\n\"433\":\"snow falling at velocity 1\",\n\"434\":\"snow falling at velocity 2\",\n\"435\":\"snow falling at velocity 3\",\n\"436\":\"snow falling at velocity 4\",\n\"437\":\"snow falling at velocity 5\",\n\"446\":\"snow falling at velocity 6\",\n\"450\":\"snow falling at velocity 7\",\n\"451\":\"snow falling at velocity 8\",\n\"452\":\"snow falling at velocity 9\",\n\"454\":\"snow falling at velocity 1\",\n\"461\":\"snow falling at velocity 2\",\n\"463\":\"snow falling at velocity 3\",\n\"475\":\"snow falling at velocity 4\",\n\"504\":\"snow falling at velocity 5\",\n\"506\":\"snow falling at velocity 6\",\n\"507\":\"snow falling at velocity 7\",\n\"513\":\"snow falling at velocity 8\",\n\"514\":\"snow falling at velocity 9\",\n\"518\":\"snow falling at velocity 1\",\n\"527\":\"snow falling at velocity 2\",\n\"528\":\"snow falling at velocity 3\",\n\"531\":\"snow falling at velocity 4\",\n\"532\":\"snow falling at velocity 5\",\n\"533\":\"snow falling at velocity 6\",\n\"535\":\"snow falling at velocity 7\",\n\"541\":\"snow falling at velocity 8\",\n\"542\":\"snow falling at velocity 9\",\n\"544\":\"snow falling at velocity 1\",\n\"551\":\"snow falling at velocity 2\",\n\"553\":\"snow falling at velocity 3\",\n\"556\":\"snow falling at velocity 4\",\n\"557\":\"snow falling at velocity 5\",\n\"558\":\"snow falling at velocity 6\",\n\"559\":\"snow falling at velocity 7\",\n\"560\":\"snow falling at velocity 8\",\n\"561\":\"snow falling at velocity 9\",\n\"562\":\"snow falling at velocity 1\",\n\"563\":\"snow falling at velocity 2\",\n\"567\":\"snow falling at velocity 3\",\n\"571\":\"snow falling at velocity 4\",\n\"579\":\"snow falling at velocity 5\",",
+        50,
+        true,
+        "(1girl, woman, solo, smile, night, elegant, puffy lips, twintails, blonde hair, blue eyes, small breasts, pijama, tight,sitting at desk, gameing desk, ((streaming twitch)), ((watching at viewer)), bedroom, highres, (****, best quality), (detailed background), (detailed face),  midnight, santa dress, xmas, moon and snow outside the window, ((hand behind back)), singing, ((night)), ((snowing outside)),santa hat,shorts\n--neg (worst quality, low quality:1.4), (zombie, sketch, interlocked fingers, comic),((nsfw))",
+        "APP",
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "links": [
+    [
+      7,
+      3,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      12,
+      4,
+      1,
+      12,
+      0,
+      "CLIP"
+    ],
+    [
+      21,
+      4,
+      2,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      22,
+      15,
+      0,
+      16,
+      1,
+      "CONTEXT_OPTIONS"
+    ],
+    [
+      42,
+      16,
+      0,
+      3,
+      0,
+      "MODEL"
+    ],
+    [
+      55,
+      32,
+      0,
+      31,
+      1,
+      "STRING"
+    ],
+    [
+      56,
+      8,
+      0,
+      31,
+      0,
+      "IMAGE"
+    ],
+    [
+      105,
+      58,
+      0,
+      3,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      131,
+      4,
+      0,
+      16,
+      0,
+      "MODEL"
+    ],
+    [
+      134,
+      12,
+      0,
+      58,
+      0,
+      "CLIP"
+    ],
+    [
+      135,
+      50,
+      0,
+      3,
+      3,
+      "LATENT"
+    ],
+    [
+      136,
+      58,
+      1,
+      3,
+      2,
+      "CONDITIONING"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
