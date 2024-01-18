@@ -1,0 +1,636 @@
+{
+  "last_node_id": 29,
+  "last_link_id": 44,
+  "nodes": [
+    {
+      "id": 10,
+      "type": "UpscaleModelLoader",
+      "pos": [
+        1269,
+        630
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            13
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4xUltrasharp_4xUltrasharpV10.pt"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "ControlNetLoader",
+      "pos": [
+        1287,
+        1377
+      ],
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            25
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "control_v11f1e_sd15_tile.pth"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "UltimateSDUpscale",
+      "pos": [
+        1683,
+        468
+      ],
+      "size": {
+        "0": 315,
+        "1": 590
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 39
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 16,
+          "slot_index": 1
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 24,
+          "slot_index": 2
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 18,
+          "slot_index": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 21
+        },
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15,
+            44
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltimateSDUpscale"
+      },
+      "widgets_values": [
+        2,
+        0,
+        "fixed",
+        10,
+        6,
+        "dpmpp_2m",
+        "karras",
+        0.4,
+        "Linear",
+        512,
+        512,
+        16,
+        32,
+        "Half Tile",
+        0.5,
+        64,
+        16,
+        32,
+        "enable"
+      ]
+    },
+    {
+      "id": 29,
+      "type": "FrameInterpolator",
+      "pos": [
+        2061,
+        1413
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 44,
+          "slot_index": 0
+        },
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "link": 41,
+          "widget": {
+            "name": "METADATA"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGES",
+          "type": "IMAGE",
+          "links": [
+            40
+          ],
+          "shape": 6,
+          "slot_index": 0
+        },
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "links": [
+            42
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FrameInterpolator"
+      },
+      "widgets_values": [
+        "",
+        2
+      ]
+    },
+    {
+      "id": 18,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        1278,
+        486
+      ],
+      "size": {
+        "0": 315,
+        "1": 98
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            16
+          ],
+          "shape": 3
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            19,
+            20
+          ],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            21
+          ],
+          "shape": 3,
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "meinamix_meinaV11.safetensors"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "LoadFramesFromFolder",
+      "pos": [
+        1278,
+        1503
+      ],
+      "size": {
+        "0": 315,
+        "1": 102
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGES",
+          "type": "IMAGE",
+          "links": [
+            38,
+            39
+          ],
+          "shape": 6,
+          "slot_index": 0
+        },
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "links": [
+            41
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadFramesFromFolder"
+      },
+      "widgets_values": [
+        "K:\\VARIE\\ComfyUI_windows_portable\\ComfyUI\\output\\n-suite\\videos\\video_242",
+        9
+      ]
+    },
+    {
+      "id": 21,
+      "type": "ControlNetApply",
+      "pos": [
+        1287,
+        1215
+      ],
+      "size": {
+        "0": 317.4000244140625,
+        "1": 98
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 23
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 25,
+          "slot_index": 1
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 38
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            24
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApply"
+      },
+      "widgets_values": [
+        1
+      ]
+    },
+    {
+      "id": 20,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1269,
+        981
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 20
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ],
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "(hands), text, error, cropped, (worst quality:1.2), (low quality:1.2), normal quality, (jpeg artifacts:1.3), signature, watermark, username, blurry, artist name, monochrome, sketch, censorship, censor, (copyright:1.2), extra legs, (forehead mark) (depth of field) (emotionless) (pumpkin),bad anatomy, bad hands, missing fingers, mutated hands and fingers, extra digit, fewer digits, deformed, disfigured, mutation, mutated, extra limb, extra legs, missing limb, floating limbs, disconnected limbs, malformed hands, long neck, long body,fused face.monochrome,fused arms,worst quality,low quality,normal quality,error,nsfw"
+      ],
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 19,
+      "type": "CLIPTextEncode",
+      "pos": [
+        1269,
+        729
+      ],
+      "size": {
+        "0": 400,
+        "1": 200
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 19
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            23
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "(1girl, woman, solo, smile, night, elegant, puffy lips, twintails, blonde hair, blue eyes, small breasts, pijama, tight,sitting at desk, gaming desk, ((streaming twitch)), ((watching at viewer)), bedroom, highres, (****, best quality), (detailed background), (detailed face),  midnight, santa dress, xmas, moon and snow outside the window, ((hand behind back)), singing,((night)), ((snowing outside))"
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 14,
+      "type": "PreviewImage",
+      "pos": [
+        2052,
+        468
+      ],
+      "size": [
+        603,
+        819
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 24,
+      "type": "SaveVideo",
+      "pos": [
+        2709,
+        459
+      ],
+      "size": [
+        594,
+        882
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 40
+        },
+        {
+          "name": "METADATA",
+          "type": "STRING",
+          "link": 42,
+          "widget": {
+            "name": "METADATA"
+          }
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "",
+        true,
+        true,
+        2,
+        null
+      ]
+    }
+  ],
+  "links": [
+    [
+      13,
+      10,
+      0,
+      16,
+      5,
+      "UPSCALE_MODEL"
+    ],
+    [
+      15,
+      16,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      18,
+      0,
+      16,
+      1,
+      "MODEL"
+    ],
+    [
+      18,
+      20,
+      0,
+      16,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      18,
+      1,
+      19,
+      0,
+      "CLIP"
+    ],
+    [
+      20,
+      18,
+      1,
+      20,
+      0,
+      "CLIP"
+    ],
+    [
+      21,
+      18,
+      2,
+      16,
+      4,
+      "VAE"
+    ],
+    [
+      23,
+      19,
+      0,
+      21,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      24,
+      21,
+      0,
+      16,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      25,
+      22,
+      0,
+      21,
+      1,
+      "CONTROL_NET"
+    ],
+    [
+      38,
+      23,
+      0,
+      21,
+      2,
+      "IMAGE"
+    ],
+    [
+      39,
+      23,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      40,
+      29,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      41,
+      23,
+      1,
+      29,
+      1,
+      "STRING"
+    ],
+    [
+      42,
+      29,
+      1,
+      24,
+      1,
+      "STRING"
+    ],
+    [
+      44,
+      16,
+      0,
+      29,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
