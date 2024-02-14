@@ -1080,7 +1080,7 @@
     },
     {
       "id": 8,
-      "type": "String Variable [n-suite]",
+      "type": "String Variable",
       "pos": [
         -324,
         144
@@ -1104,7 +1104,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "String Variable [n-suite]"
+        "Node name for S&R": "String Variable"
       },
       "widgets_values": [
         "embedding:EasyNegative"
@@ -1495,7 +1495,7 @@
     },
     {
       "id": 28,
-      "type": "FrameInterpolator [n-suite]",
+      "type": "FrameInterpolator",
       "pos": [
         2844,
         720
@@ -1543,7 +1543,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "FrameInterpolator [n-suite]"
+        "Node name for S&R": "FrameInterpolator"
       },
       "widgets_values": [
         "",
@@ -1577,7 +1577,7 @@
     },
     {
       "id": 26,
-      "type": "SaveVideo [n-suite]",
+      "type": "SaveVideo",
       "pos": [
         3465,
         720
@@ -1605,7 +1605,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "SaveVideo [n-suite]"
+        "Node name for S&R": "SaveVideo"
       },
       "widgets_values": [
         "",
@@ -1617,7 +1617,7 @@
     },
     {
       "id": 12,
-      "type": "LoadVideo [n-suite]",
+      "type": "LoadVideo",
       "pos": [
         -324,
         702
@@ -1677,7 +1677,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "LoadVideo [n-suite]"
+        "Node name for S&R": "LoadVideo"
       },
       "widgets_values": [
         "_import_624e6fd3580914.57382403_preview.mp4",
@@ -1695,7 +1695,7 @@
     },
     {
       "id": 7,
-      "type": "String Variable [n-suite]",
+      "type": "String Variable",
       "pos": [
         -324,
         -117
@@ -1719,7 +1719,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "String Variable [n-suite]"
+        "Node name for S&R": "String Variable"
       },
       "widgets_values": [
         "masterpiece, best image,{{{solo}}}, {{full body}}, a girl, {{{{yukari hirai (shakugan no shana)}}}},  {{{{black hair}}}},  {{dark purple eyes}}, {{acorn eyes(drooping eye)}}, {{long hair(voluminous)}}, {{{{very small two side up}}}}, {{{hair elastic_(pink)}}}, {{{smile}}})}, {{{{{in riverside}}}}}, {{{{beautiful detailed face}}}}, {{ultra-detailed}}, {{{{high resolution}}}},"

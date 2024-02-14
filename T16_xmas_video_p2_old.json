@@ -287,7 +287,7 @@
     },
     {
       "id": 31,
-      "type": "SaveVideo [n-suite]",
+      "type": "SaveVideo",
       "pos": [
         1575,
         -1260
@@ -315,7 +315,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "SaveVideo [n-suite]"
+        "Node name for S&R": "SaveVideo"
       },
       "widgets_values": [
         "",
@@ -360,7 +360,7 @@
     },
     {
       "id": 32,
-      "type": "SetMetadataForSaveVideo [n-suite]",
+      "type": "SetMetadataForSaveVideo",
       "pos": [
         1080,
         -747
@@ -384,7 +384,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "SetMetadataForSaveVideo [n-suite]"
+        "Node name for S&R": "SetMetadataForSaveVideo"
       },
       "widgets_values": [
         600,

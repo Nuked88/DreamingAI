@@ -153,7 +153,7 @@
     },
     {
       "id": 29,
-      "type": "FrameInterpolator [n-suite]",
+      "type": "FrameInterpolator",
       "pos": [
         2061,
         1413
@@ -202,7 +202,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "FrameInterpolator [n-suite]"
+        "Node name for S&R": "FrameInterpolator"
       },
       "widgets_values": [
         "",
@@ -261,7 +261,7 @@
     },
     {
       "id": 23,
-      "type": "LoadFramesFromFolder [n-suite]",
+      "type": "LoadFramesFromFolder",
       "pos": [
         1278,
         1503
@@ -295,7 +295,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "LoadFramesFromFolder [n-suite]"
+        "Node name for S&R": "LoadFramesFromFolder"
       },
       "widgets_values": [
         "K:\\VARIE\\ComfyUI_windows_portable\\ComfyUI\\output\\n-suite\\videos\\video_242",
@@ -460,7 +460,7 @@
     },
     {
       "id": 24,
-      "type": "SaveVideo [n-suite]",
+      "type": "SaveVideo",
       "pos": [
         2709,
         459
@@ -488,7 +488,7 @@
         }
       ],
       "properties": {
-        "Node name for S&R": "SaveVideo [n-suite]"
+        "Node name for S&R": "SaveVideo"
       },
       "widgets_values": [
         "",
